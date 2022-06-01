@@ -1,28 +1,15 @@
 import { Component } from 'solid-js';
+import { localDB } from '../db/localDB';
 import createTodo from '../stores/createTodo';
 
 import './TodoInput.scss';
 
 export const TodoInput: Component = () => {
-  const { inputValue, setinputValue, setTodoList } = createTodo;
+  const { inputValue, handleInput, handleAddTodo } = createTodo;
   return (
     <div class="inputContaine">
-      <input
-        type="text"
-        onInput={(e) => {
-          setinputValue(e.currentTarget.value);
-        }}
-        value={inputValue()}
-      />
-      <button
-        onClick={() => {
-          if (inputValue() === '') return;
-          setTodoList((prev) => [...prev, { id: prev.length, action: inputValue(), status: 'todo' }]);
-          setinputValue('');
-        }}
-      >
-        追加
-      </button>
+      <input type="text" onInput={handleInput} value={inputValue()} />
+      <button onClick={handleAddTodo}>追加</button>
     </div>
   );
 };
