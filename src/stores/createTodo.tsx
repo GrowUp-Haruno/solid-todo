@@ -6,17 +6,13 @@ function createTodo() {
   const [inputValue, setinputValue] = createSignal('');
   const [todoList, setTodoList] = createSignal<todoType[]>([]);
 
-  const handleClick = (todo: todoType, changeTodo: todoType) => {
-    setTodoList((prev) => {
-      prev.splice(todo.id!, 1, { ...changeTodo });
-      return [...prev];
-    });
+  const handleClick = (changeTodo: todoType) => {
+    localDB.updateTodo(changeTodo);
   };
 
   // Todo追加
   const handleAddTodo = () => {
     if (inputValue() === '') return;
-    setTodoList((prev) => [...prev, { id: prev.length, action: inputValue(), status: 'todo' }]);
     localDB.addTodo(inputValue(), 'todo');
     setinputValue('');
   };
@@ -28,7 +24,7 @@ function createTodo() {
 
   // Dexieオブザーバを設定
   const subscription = localDB.observableTodoList.subscribe({
-    next: (result) => console.log('Got result:', JSON.stringify(result)),
+    next: (result) => setTodoList(result),
     error: (error) => console.error(error),
   });
 

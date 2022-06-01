@@ -18,14 +18,14 @@ export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStat
         <>
           <button
             onClick={() => {
-              handleClick(todo, { ...todo, status: 'delete' });
+              handleClick({ ...todo, status: 'delete' });
             }}
           >
             削除
           </button>
           <button
             onClick={() => {
-              handleClick(todo, { ...todo, status: 'complete' });
+              handleClick({ ...todo, status: 'complete' });
             }}
           >
             完了
@@ -35,7 +35,7 @@ export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStat
       complete: () => (
         <button
           onClick={() => {
-            handleClick(todo, { ...todo, status: 'todo' });
+            handleClick({ ...todo, status: 'todo' });
           }}
         >
           完了を取り消す
@@ -44,7 +44,7 @@ export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStat
       delete: () => (
         <button
           onClick={() => {
-            handleClick(todo, { ...todo, status: 'todo' });
+            handleClick( { ...todo, status: 'todo' });
           }}
         >
           削除を取り消す

@@ -24,10 +24,10 @@ class DB extends Dexie {
     });
   };
 
-  deleteTodo = (id: number) => {
+  updateTodo = (changeTodo: todoType) => {
     this.transaction('rw', this.todo, async () => {
       try {
-        this.todo.where('id').equals(id).delete();
+        this.todo.put(changeTodo);
       } catch (error) {
         console.log(error);
       }
