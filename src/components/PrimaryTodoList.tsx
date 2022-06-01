@@ -3,6 +3,8 @@ import { Dynamic } from 'solid-js/web';
 import { todoListTitleType, todoStatusType, todoType } from '../models/modelTodo';
 import createTodo from '../stores/createTodo';
 
+import './PrimaryTodoList.scss';
+
 export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {
   const { todoList, handleClick } = createTodo;
 
@@ -53,14 +55,14 @@ export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStat
 
   return (
     <>
-      <p style={{ 'border-bottom': '1px solid black', 'padding-bottom': '8px' }}>{props.listTitle}</p>
+      <p class="todoTitle">{props.listTitle}</p>
       <ul>
         <For each={todoList()}>
           {(todo) => {
             return (
               <Show when={todo.status === props.todoStatus}>
-                <li style={{ padding: '4px', 'list-style': 'none', display: 'flex', 'justify-content': 'flex-end', 'align-items': 'center', 'column-gap': '8px' }}>
-                  <p style={{ 'flex-grow': 1 }}>{todo.action}</p>
+                <li class="todoItem">
+                  <p>{todo.action}</p>
                   <Dynamic component={buttons(todo)[props.todoStatus]} />
                 </li>
               </Show>
