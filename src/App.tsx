@@ -1,12 +1,14 @@
 import { Component } from 'solid-js';
 
-import { TodoCompleteList } from './components/TodoCompleteList';
-import { TodoDeleteList } from './components/TodoDeleteList';
-import { TodoInput } from './components/TodoInput';
-import { TodoList } from './components/TodoList';
 import "@/assets/css/App.scss"
-import { localDB } from './db/localDB';
-import { PrimaryButton } from './components/atoms/PrimaryButton';
+
+import { TodoCompleteList } from '@/components/modules/TodoCompleteList';
+import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { localDB } from '@/db/localDB';
+import { TodoInput } from '@/components/modules/TodoInput';
+import { TodoList } from '@/components/modules/TodoList';
+import { TodoDeleteList } from '@/components/modules/TodoDeleteList';
+
 
 export const App: Component = () => {
   return (

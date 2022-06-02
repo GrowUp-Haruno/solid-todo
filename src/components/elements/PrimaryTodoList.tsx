@@ -1,8 +1,8 @@
-import { Component, createSignal, For, JSX, Show } from 'solid-js';
+import { Component, createSignal, For, Show } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-import { editType, todoListTitleType, todoStatusType, todoType } from '../models/modelTodo';
-import createTodo from '../stores/createTodo';
 
+import { editType, todoListTitleType, todoStatusType } from '@/models/modelTodo';
+import createTodo from '@/stores/createTodo';
 import '@/assets/css/PrimaryTodoList.scss';
 
 export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {

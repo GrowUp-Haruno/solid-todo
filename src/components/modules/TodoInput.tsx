@@ -1,8 +1,8 @@
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
 import { Component } from 'solid-js';
-import createTodo from '../stores/createTodo';
+import { PrimaryButton } from '@/components/atoms/PrimaryButton';
 
 import '@/assets/css/TodoInput.scss';
+import createTodo from '@/stores/createTodo';
 
 export const TodoInput: Component = () => {
   const { inputValue, handleInput, handleAddTodo, handleKeyUp } = createTodo;

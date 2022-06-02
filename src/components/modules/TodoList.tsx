@@ -1,5 +1,5 @@
-import { Component, For, Show } from 'solid-js';
-import { PrimaryTodoList } from './PrimaryTodoList';
+import { Component } from 'solid-js';
+import { PrimaryTodoList } from '@/components/elements/PrimaryTodoList';
 
 export const TodoList: Component = () => {
   return <PrimaryTodoList listTitle="やること" todoStatus="todo" />;
