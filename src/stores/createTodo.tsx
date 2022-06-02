@@ -1,9 +1,11 @@
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
-import { PrimaryInput } from '@/components/atoms/PrimaryInput';
 import { createSignal, createRoot, createEffect, onCleanup, JSX, Setter } from 'solid-js';
-import { Dynamic } from 'solid-js/web';
-import { localDB } from '../db/localDB';
 import { editType, todoStatusType, todoType } from '../models/modelTodo';
+import { TodoButton } from '@/components/modules/TodoButton';
+import { TodoCompleteButton } from '@/components/modules/TodoCompleteButton';
+import { TodoDeleteButton } from '@/components/modules/TodoDeleteButton';
+import { TodoEdit } from '@/components/modules/TodoEdit';
+import { TodoView } from '@/components/modules/TodoView';
+import { localDB } from '@/db/localDB';
 
 function createTodo() {
   const [inputValue, setinputValue] = createSignal('');
@@ -53,7 +55,8 @@ function createTodo() {
     setinputValue('');
   };
 
-  const handleConfirm= () => {
+  // 変更確定
+  const handleConfirm = () => {
     localDB.trashTodo();
   };
 
@@ -76,97 +79,40 @@ function createTodo() {
     [x in todoStatusType]: () => JSX.Element;
   } = (todo) => {
     return {
-      todo: () => (
-        <>
-          <PrimaryButton
-            onClick={() => {
-              handleClick({ ...todo, status: 'delete' });
-            }}
-          >
-            削除
-          </PrimaryButton>
-          <PrimaryButton
-            onClick={() => {
-              handleClick({ ...todo, status: 'complete' });
-            }}
-          >
-            完了
-          </PrimaryButton>
-        </>
-      ),
-      complete: () => (
-        <PrimaryButton
-          onClick={() => {
-            handleClick({ ...todo, status: 'todo' });
-          }}
-        >
-          完了を取り消す
-        </PrimaryButton>
-      ),
-      delete: () => (
-        <PrimaryButton
-          onClick={() => {
-            handleClick({ ...todo, status: 'todo' });
-          }}
-        >
-          削除を取り消す
-        </PrimaryButton>
-      ),
+      todo: () => <TodoButton todo={todo} />,
+      complete: () => <TodoCompleteButton todo={todo} />,
+      delete: () => <TodoDeleteButton todo={todo} />,
       trash: () => <></>,
     };
   };
 
-  const editInput: (
+  const editComponents: (
     todo: todoType,
     setEdit: Setter<editType>
   ) => {
     [x in editType]: () => JSX.Element;
   } = (todo, setEdit) => {
     return {
-      edit: () => (
-        <>
-          <PrimaryInput
-            onInput={handleEditInput}
-            value={editInputValue()}
-            onBlur={() => {
-              setEdit('view');
-              if (editInputValue() !== '') localDB.updateTodo({ ...todo, action: editInputValue() });
-              setEditInputValue('');
-            }}
-            onKeyUp={(ev) => {
-              handleEditKeyUp(ev, todo);
-            }}
-            ref={inputRef}
-          />
-          <PrimaryButton>修正</PrimaryButton>
-        </>
-      ),
-      view: () => (
-        <>
-          <p
-            onClick={() => {
-              setEdit('edit');
-              handleViewClick(todo);
-            }}
-          >
-            {todo.action}
-          </p>
-          <Dynamic component={buttons(todo)[todo.status]} />
-        </>
-      ),
+      edit: () => <TodoEdit inputRef={inputRef} setEdit={setEdit} todo={todo} />,
+      view: () => <TodoView inputRef={inputRef} setEdit={setEdit} todo={todo} />,
     };
   };
 
   return {
     inputValue,
     todoList,
+    buttons,
+    editComponents,
+    editInputValue,
+    setEditInputValue,
     handleClick,
     handleInput,
     handleKeyUp,
     handleAddTodo,
-    buttons,
-    editInput,
     handleConfirm,
+    handleEditInput,
+    handleEditKeyUp,
+    handleViewClick,
   };
 }
 
