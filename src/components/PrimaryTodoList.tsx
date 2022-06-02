@@ -3,7 +3,7 @@ import { Dynamic } from 'solid-js/web';
 import { editType, todoListTitleType, todoStatusType, todoType } from '../models/modelTodo';
 import createTodo from '../stores/createTodo';
 
-import './PrimaryTodoList.scss';
+import '@/assets/css/PrimaryTodoList.scss';
 
 export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {
   const { todoList, editInput } = createTodo;

@@ -1,3 +1,4 @@
+import { PrimaryButton } from '@/components/atoms/PrimaryButton';
 import { createSignal, createRoot, createEffect, onCleanup, JSX, Setter } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import { localDB } from '../db/localDB';
@@ -72,39 +73,39 @@ function createTodo() {
     return {
       todo: () => (
         <>
-          <span class="button"
+          <PrimaryButton
             onClick={() => {
               handleClick({ ...todo, status: 'delete' });
             }}
           >
             削除
-          </span>
-          <span class="button"
+          </PrimaryButton>
+          <PrimaryButton
             onClick={() => {
               handleClick({ ...todo, status: 'complete' });
             }}
           >
             完了
-          </span>
+          </PrimaryButton>
         </>
       ),
       complete: () => (
-        <span class="button"
+        <PrimaryButton
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
           }}
         >
           完了を取り消す
-        </span>
+        </PrimaryButton>
       ),
       delete: () => (
-        <span class="button"
+        <PrimaryButton
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
           }}
         >
           削除を取り消す
-        </span>
+        </PrimaryButton>
       ),
       trash: () => <></>,
     };
@@ -133,7 +134,7 @@ function createTodo() {
             }}
             ref={inputRef}
           />
-          <span class="button">修正</span>
+          <PrimaryButton>修正</PrimaryButton>
         </>
       ),
       view: () => (
