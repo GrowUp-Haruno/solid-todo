@@ -1,4 +1,5 @@
 import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { PrimaryInput } from '@/components/atoms/PrimaryInput';
 import { createSignal, createRoot, createEffect, onCleanup, JSX, Setter } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import { localDB } from '../db/localDB';
@@ -120,16 +121,15 @@ function createTodo() {
     return {
       edit: () => (
         <>
-          <input
-            type="text"
+          <PrimaryInput
             onInput={handleEditInput}
             value={editInputValue()}
-            onblur={() => {
+            onBlur={() => {
               setEdit('view');
               if (editInputValue() !== '') localDB.updateTodo({ ...todo, action: editInputValue() });
               setEditInputValue('');
             }}
-            onkeyup={(ev) => {
+            onKeyUp={(ev) => {
               handleEditKeyUp(ev, todo);
             }}
             ref={inputRef}

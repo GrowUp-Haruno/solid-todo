@@ -3,12 +3,13 @@ import { PrimaryButton } from '@/components/atoms/PrimaryButton';
 
 import '@/assets/css/TodoInput.scss';
 import createTodo from '@/stores/createTodo';
+import { PrimaryInput } from '@/components/atoms/PrimaryInput';
 
 export const TodoInput: Component = () => {
   const { inputValue, handleInput, handleAddTodo, handleKeyUp } = createTodo;
   return (
     <div class="inputContainer">
-      <input type="text" onInput={handleInput} value={inputValue()} onkeyup={handleKeyUp} />
+      <PrimaryInput onInput={handleInput} value={inputValue()} onKeyUp={handleKeyUp} />
       <PrimaryButton onClick={handleAddTodo}>追加</PrimaryButton>
     </div>
   );
