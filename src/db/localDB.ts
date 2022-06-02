@@ -18,6 +18,7 @@ class DB extends Dexie {
     this.transaction('rw', this.todo, async () => {
       try {
         this.todo.put({ action: addText, status: todoStatus });
+        // this.todo.put({ action: addText, status: todoStatus, edit: 'view' });
       } catch (error) {
         console.log(error);
       }
