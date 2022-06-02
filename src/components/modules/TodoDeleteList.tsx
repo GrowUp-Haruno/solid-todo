@@ -1,6 +1,6 @@
+import { BaseTodoList } from '@/components/elements/BaseTodoList';
 import { Component } from 'solid-js';
-import { PrimaryTodoList } from '@/components/elements/PrimaryTodoList';
 
 export const TodoDeleteList: Component = () => {
-  return <PrimaryTodoList listTitle="削除" todoStatus="delete" />;
+  return <BaseTodoList listTitle="削除" todoStatus="delete" />;
 };

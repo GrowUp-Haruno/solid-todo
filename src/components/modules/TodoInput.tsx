@@ -8,7 +8,7 @@ import { PrimaryInput } from '@/components/atoms/PrimaryInput';
 export const TodoInput: Component = () => {
   const { inputValue, handleInput, handleAddTodo, handleKeyUp } = createTodo;
   return (
-    <div class="inputContainer">
+    <div class="todoInput">
       <PrimaryInput onInput={handleInput} value={inputValue()} onKeyUp={handleKeyUp} />
       <PrimaryButton onClick={handleAddTodo}>追加</PrimaryButton>
     </div>

@@ -53,6 +53,10 @@ function createTodo() {
     setinputValue('');
   };
 
+  const handleConfirm= () => {
+    localDB.trashTodo();
+  };
+
   // Dexieオブザーバを設定(indexDBが更新されると発火)
   const subscription = localDB.observableTodoList.subscribe({
     next: (result) => setTodoList(result),
@@ -153,7 +157,17 @@ function createTodo() {
     };
   };
 
-  return { inputValue, todoList, handleClick, handleInput, handleKeyUp, handleAddTodo, buttons, editInput };
+  return {
+    inputValue,
+    todoList,
+    handleClick,
+    handleInput,
+    handleKeyUp,
+    handleAddTodo,
+    buttons,
+    editInput,
+    handleConfirm,
+  };
 }
 
 export default createRoot(createTodo);

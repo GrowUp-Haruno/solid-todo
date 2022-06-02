@@ -5,7 +5,7 @@ import { editType, todoListTitleType, todoStatusType } from '@/models/modelTodo'
 import createTodo from '@/stores/createTodo';
 import '@/assets/css/PrimaryTodoList.scss';
 
-export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {
+export const BaseTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {
   const { todoList, editInput } = createTodo;
 
   return (
