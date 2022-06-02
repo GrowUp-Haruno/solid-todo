@@ -2,17 +2,16 @@ import { createSignal, createRoot, createEffect, onCleanup, JSX, Setter } from '
 import { Dynamic } from 'solid-js/web';
 import { localDB } from '../db/localDB';
 import { editType, todoStatusType, todoType } from '../models/modelTodo';
-// import './createTodo.scss';
 
 function createTodo() {
   const [inputValue, setinputValue] = createSignal('');
   const [editInputValue, setEditInputValue] = createSignal('');
   const [todoList, setTodoList] = createSignal<todoType[]>([]);
 
+  // 編集入力のref
   let inputRef: HTMLInputElement;
 
   const handleViewClick = (todo: todoType) => {
-    // localDB.updateTodo({ ...todo, edit: 'edit' });
     setEditInputValue(todo.action);
     inputRef.focus();
   };
@@ -42,7 +41,6 @@ function createTodo() {
     if (ev.code !== 'Enter') return;
     if (editInputValue() === '') return;
     localDB.updateTodo({ ...todo, action: editInputValue() });
-    // localDB.updateTodo({ ...todo, action: editInputValue(), edit: 'view' });
     setEditInputValue('');
   };
 
@@ -53,12 +51,13 @@ function createTodo() {
     setinputValue('');
   };
 
-  // Dexieオブザーバを設定
+  // Dexieオブザーバを設定(indexDBが更新されると発火)
   const subscription = localDB.observableTodoList.subscribe({
     next: (result) => setTodoList(result),
     error: (error) => console.error(error),
   });
 
+  // 各種Signalが更新された時に発火
   createEffect(() => {
     console.log(todoList());
   });
@@ -76,7 +75,6 @@ function createTodo() {
           <button
             onClick={() => {
               handleClick({ ...todo, status: 'delete' });
-              // handleClick({ ...todo, status: 'delete', edit: 'view' });
             }}
           >
             削除
@@ -84,7 +82,6 @@ function createTodo() {
           <button
             onClick={() => {
               handleClick({ ...todo, status: 'complete' });
-              // handleClick({ ...todo, status: 'complete', edit: 'view' });
             }}
           >
             完了
@@ -95,7 +92,6 @@ function createTodo() {
         <button
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
-            // handleClick({ ...todo, status: 'todo', edit: 'view' });
           }}
         >
           完了を取り消す
@@ -105,7 +101,6 @@ function createTodo() {
         <button
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
-            // handleClick({ ...todo, status: 'todo', edit: 'view' });
           }}
         >
           削除を取り消す
@@ -137,17 +132,7 @@ function createTodo() {
             }}
             ref={inputRef}
           />
-          <button
-          // onClick={() => {
-          //   if (editInputValue() === '') return;
-          //   handleClick({ ...todo, action: editInputValue() });
-          //   setEdit('view');
-          //   // handleClick({ ...todo, action: editInputValue(), edit: 'view' });
-          //   setEditInputValue('');
-          // }}
-          >
-            修正
-          </button>
+          <button>修正</button>
         </>
       ),
       view: () => (

@@ -6,28 +6,25 @@ import createTodo from '../stores/createTodo';
 import './PrimaryTodoList.scss';
 
 export const PrimaryTodoList: Component<{ listTitle: todoListTitleType; todoStatus: todoStatusType }> = (props) => {
-  const { todoList, buttons, editInput } = createTodo;
+  const { todoList, editInput } = createTodo;
 
   return (
-    <>
-      <p class="todoTitle">{props.listTitle}</p>
+    <div class='todoList'>
+      <p>{props.listTitle}</p>
       <ul>
         <For each={todoList()}>
-
           {(todo) => {
-            const [edit, setEdit] = createSignal<editType>('view')
+            const [edit, setEdit] = createSignal<editType>('view');
             return (
               <Show when={todo.status === props.todoStatus}>
                 <li class="todoItem">
-                  {/* <p onClick={() => handleChangeEdit(todo)}>{todo.action}</p> */}
                   <Dynamic component={editInput(todo, setEdit)[edit()]} />
-                  {/* <Dynamic component={buttons(todo)[props.todoStatus]} /> */}
                 </li>
               </Show>
             );
           }}
         </For>
       </ul>
-    </>
+    </div>
   );
 };
