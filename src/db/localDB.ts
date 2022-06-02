@@ -12,23 +12,41 @@ class DB extends Dexie {
     });
   }
 
+  // Dexieオブザーバ
   observableTodoList = liveQuery(() => this.todo.toArray());
 
+  // 新規追加
   addTodo = (addText: string, todoStatus: todoStatusType) => {
     this.transaction('rw', this.todo, async () => {
       try {
         this.todo.put({ action: addText, status: todoStatus });
-        // this.todo.put({ action: addText, status: todoStatus, edit: 'view' });
       } catch (error) {
         console.log(error);
       }
     });
   };
 
+  // 変更処理
   updateTodo = (changeTodo: todoType) => {
     this.transaction('rw', this.todo, async () => {
       try {
         this.todo.put(changeTodo);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
+  // 変更確定処理
+  trashTodo = () => {
+    this.transaction('rw', this.todo, async () => {
+      try {
+        const todoList = await this.todo.toArray();
+        const updateTodoList: todoType[] = todoList.map((todo) => {
+          if (todo.status === 'delete' || todo.status === 'complete') return { ...todo, status: 'trash' };
+          return todo;
+        });
+        this.todo.bulkPut(updateTodoList);
       } catch (error) {
         console.log(error);
       }
