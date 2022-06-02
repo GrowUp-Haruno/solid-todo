@@ -1,24 +1,28 @@
-.todoTitle {
-  border-bottom: 1px solid black;
-  padding-bottom: 8px;
-}
-
-.todoItem {
-  padding: 4px;
-  list-style: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  column-gap: 8px;
-  & p {
-    flex-grow: 1;
+.todoList {
+  margin-top: 24px;
+  & > p {
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
   }
-  & input {
-    flex-grow: 1;
-    padding: 8px 12px;
-    border: 1px solid #a3a3a3;
-  }
-  & button {
-    padding: 8px 8px;
+  & > ul > li {
+    padding: 4px;
+    padding-inline-start: 40px;
+    margin: 16px 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 8px;
+    & > p {
+      flex-grow: 1;
+    }
+    & > input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: 1px solid #a3a3a3;
+    }
+    & > button {
+      padding: 4px 8px;
+    }
   }
 }
