@@ -5,6 +5,7 @@ import { TodoDeleteList } from './components/TodoDeleteList';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
 import './App.scss';
+import { localDB } from './db/localDB';
 
 export const App: Component = () => {
   return (
@@ -13,6 +14,14 @@ export const App: Component = () => {
       <TodoList />
       <TodoCompleteList />
       <TodoDeleteList />
+      <span
+        class="button"
+        onClick={() => {
+          localDB.trashTodo();
+        }}
+      >
+        確定
+      </span>
     </div>
   );
 };

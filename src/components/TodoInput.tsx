@@ -8,7 +8,7 @@ export const TodoInput: Component = () => {
   return (
     <div class="inputContainer">
       <input type="text" onInput={handleInput} value={inputValue()} onkeyup={handleKeyUp} />
-      <button onClick={handleAddTodo}>追加</button>
+      <span class="button" onClick={handleAddTodo}>追加</span>
     </div>
   );
 };

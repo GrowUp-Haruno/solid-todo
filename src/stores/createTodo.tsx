@@ -72,40 +72,41 @@ function createTodo() {
     return {
       todo: () => (
         <>
-          <button
+          <span class="button"
             onClick={() => {
               handleClick({ ...todo, status: 'delete' });
             }}
           >
             削除
-          </button>
-          <button
+          </span>
+          <span class="button"
             onClick={() => {
               handleClick({ ...todo, status: 'complete' });
             }}
           >
             完了
-          </button>
+          </span>
         </>
       ),
       complete: () => (
-        <button
+        <span class="button"
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
           }}
         >
           完了を取り消す
-        </button>
+        </span>
       ),
       delete: () => (
-        <button
+        <span class="button"
           onClick={() => {
             handleClick({ ...todo, status: 'todo' });
           }}
         >
           削除を取り消す
-        </button>
+        </span>
       ),
+      trash: () => <></>,
     };
   };
 
@@ -132,7 +133,7 @@ function createTodo() {
             }}
             ref={inputRef}
           />
-          <button>修正</button>
+          <span class="button">修正</span>
         </>
       ),
       view: () => (
