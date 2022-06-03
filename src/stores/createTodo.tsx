@@ -9,16 +9,7 @@ import { localDB } from '@/db/localDB';
 
 function createTodo() {
   const [inputValue, setinputValue] = createSignal('');
-  const [editInputValue, setEditInputValue] = createSignal('');
   const [todoList, setTodoList] = createSignal<todoType[]>([]);
-
-  // 編集入力のref
-  // let inputRef: HTMLInputElement;
-
-  const handleViewClick = (todo: todoType) => {
-    setEditInputValue(todo.action);
-    // inputRef.focus();
-  };
 
   const handleClick = (changeTodo: todoType) => {
     localDB.updateTodo(changeTodo);
@@ -34,18 +25,6 @@ function createTodo() {
     if (inputValue() === '') return;
     localDB.addTodo(inputValue(), 'todo');
     setinputValue('');
-  };
-
-  // Todo編集入力
-  const handleEditInput: JSX.EventHandlerUnion<HTMLInputElement, InputEvent> = (e) => {
-    setEditInputValue(e.currentTarget.value);
-  };
-  // Todo編集入力でEnterを検出したらTodoを追加
-  const handleEditKeyUp = (ev: KeyboardEvent, todo: todoType) => {
-    if (ev.code !== 'Enter') return;
-    if (editInputValue() === '') return;
-    localDB.updateTodo({ ...todo, action: editInputValue() });
-    setEditInputValue('');
   };
 
   // Todo追加
@@ -94,7 +73,6 @@ function createTodo() {
   } = (todo, setEdit) => {
     return {
       edit: () => <TodoEdit setEdit={setEdit} todo={todo} />,
-      // edit: () => <TodoEdit inputRef={inputRef} setEdit={setEdit} todo={todo} />,
       view: () => <TodoView setEdit={setEdit} todo={todo} />,
     };
   };
@@ -104,16 +82,11 @@ function createTodo() {
     todoList,
     buttons,
     editComponents,
-    editInputValue,
-    setEditInputValue,
     handleClick,
     handleInput,
     handleKeyUp,
     handleAddTodo,
     handleConfirm,
-    handleEditInput,
-    handleEditKeyUp,
-    handleViewClick,
   };
 }
 
