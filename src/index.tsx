@@ -1,7 +1,16 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
+
+import { SwUpdatePrompt } from '@/SwUpdatePrompt';
+import { App } from '@/App';
 import '@/assets/css/index.scss';
 
-import { App } from './App';
-
-render(() => <App />, document.getElementById('root') as HTMLElement);
+render(
+  () => (
+    <>
+      <App />
+      <SwUpdatePrompt />
+    </>
+  ),
+  document.getElementById('root') as HTMLElement
+);
