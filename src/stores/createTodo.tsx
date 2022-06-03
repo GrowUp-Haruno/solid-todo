@@ -10,6 +10,9 @@ import { localDB } from '@/db/localDB';
 function createTodo() {
   const [inputValue, setinputValue] = createSignal('');
   const [todoList, setTodoList] = createSignal<todoType[]>([]);
+  
+  // 完了ボタンの表示状態
+  const [isConfirmShow, setIsConfirmShow] = createSignal(false);
 
   const handleClick = (changeTodo: todoType) => {
     localDB.updateTodo(changeTodo);
@@ -47,7 +50,7 @@ function createTodo() {
 
   // 各種Signalが更新された時に発火
   createEffect(() => {
-    console.log(todoList());
+    setIsConfirmShow(todoList().filter((todo) => todo.status === 'complete' || todo.status === 'delete').length !== 0);
   });
 
   // Dexieオブザーバの後始末
@@ -80,6 +83,7 @@ function createTodo() {
   return {
     inputValue,
     todoList,
+    isConfirmShow,
     buttons,
     editComponents,
     handleClick,
