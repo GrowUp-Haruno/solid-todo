@@ -3,7 +3,7 @@ import createTodo from '@/stores/createTodo';
 import { Component, Setter } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 
-export const TodoView: Component<{ setEdit: Setter<editType>; todo: todoType; inputRef: HTMLInputElement }> = (
+export const TodoView: Component<{ setEdit: Setter<editType>; todo: todoType; }> = (
   props
 ) => {
   const { handleViewClick, buttons } = createTodo;

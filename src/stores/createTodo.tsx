@@ -13,11 +13,11 @@ function createTodo() {
   const [todoList, setTodoList] = createSignal<todoType[]>([]);
 
   // 編集入力のref
-  let inputRef: HTMLInputElement;
+  // let inputRef: HTMLInputElement;
 
   const handleViewClick = (todo: todoType) => {
     setEditInputValue(todo.action);
-    inputRef.focus();
+    // inputRef.focus();
   };
 
   const handleClick = (changeTodo: todoType) => {
@@ -93,8 +93,9 @@ function createTodo() {
     [x in editType]: () => JSX.Element;
   } = (todo, setEdit) => {
     return {
-      edit: () => <TodoEdit inputRef={inputRef} setEdit={setEdit} todo={todo} />,
-      view: () => <TodoView inputRef={inputRef} setEdit={setEdit} todo={todo} />,
+      edit: () => <TodoEdit setEdit={setEdit} todo={todo} />,
+      // edit: () => <TodoEdit inputRef={inputRef} setEdit={setEdit} todo={todo} />,
+      view: () => <TodoView setEdit={setEdit} todo={todo} />,
     };
   };
 
