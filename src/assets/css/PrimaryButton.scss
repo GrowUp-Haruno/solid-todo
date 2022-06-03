@@ -1,0 +1,11 @@
+@import "./_variables.scss";
+
+.primaryButton {
+  padding: 4px 8px;
+  border: none;
+  background-color: $accent-color;
+  border-radius: 8px;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+}

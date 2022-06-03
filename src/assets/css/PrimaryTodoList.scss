@@ -1,0 +1,23 @@
+.todoList {
+  margin: 24px 0;
+  & > p {
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
+    font-size: 20px;
+  }
+  & > ul > li {
+    padding: 4px;
+    padding-inline-start: 40px;
+    margin: 16px 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 8px;
+    height:40px;
+    & > p {
+      flex-grow: 1;
+      padding: 8px 0;
+    }
+  }
+}
