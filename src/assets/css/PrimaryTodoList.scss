@@ -1,7 +1,7 @@
+@import '_variables.scss';
 .todoList {
-  margin: 24px 0;
-  & > p {
-    border-bottom: 1px solid black;
+  & > h2 {
+    border-bottom: 1px solid $heading-color;
     padding-bottom: 8px;
     font-size: 20px;
   }
