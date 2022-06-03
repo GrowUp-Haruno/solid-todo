@@ -10,7 +10,7 @@ export const BaseTodoList: Component<{ listTitle: todoListTitleType; todoStatus:
 
   return (
     <div class='todoList'>
-      <p>{props.listTitle}</p>
+      <h2>{props.listTitle}</h2>
       <ul>
         <For each={todoList()}>
           {(todo) => {
