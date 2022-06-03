@@ -11,10 +11,6 @@ export const SwUpdatePrompt: Component = () => {
   } = useRegisterSW({});
   const [buttonMessage, setButtonMessage] = createSignal<'アップデート' | 'アップデート中…'>('アップデート');
 
-  createEffect(() => {
-    console.log(`needRefresh: ${needRefresh()}`);
-  });
-
   return (
     <PrimaryModal isOpen={needRefresh()} onClose={() => {}}>
       <p>🎉 新しいバージョンがリリースされました🎉</p>
