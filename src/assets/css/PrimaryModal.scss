@@ -20,5 +20,8 @@
     background: #fff;
     align-items: center;
     border-radius: 8px;
+    & .primaryButton  {
+      width: 100%;
+    }
   }
 }
