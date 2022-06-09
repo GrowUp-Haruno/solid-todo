@@ -52,6 +52,14 @@ class DB extends Dexie {
       }
     });
   };
+
+  // データベースを削除
+  DeleteDatabase = () => {
+    (async () => {
+      await this.delete();
+      window.location.reload();
+    })();
+  };
 }
 
 export const localDB = new DB();

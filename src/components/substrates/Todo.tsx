@@ -5,6 +5,7 @@ import { TodoList } from '@/components/modules/TodoList';
 import { TodoCompleteList } from '@/components/modules/TodoCompleteList';
 import { TodoDeleteList } from '@/components/modules/TodoDeleteList';
 import { TodoConfirm } from '@/components/modules/TodoConfirm';
+import { DBdelete } from '@/components/modules/DBdelete';
 
 export const Todo: Component = () => {
   return (
@@ -14,6 +15,7 @@ export const Todo: Component = () => {
       <TodoCompleteList />
       <TodoDeleteList />
       <TodoConfirm />
+      <DBdelete />
     </>
   );
 };

@@ -56,7 +56,8 @@ function createTodo() {
   // Dexieオブザーバの後始末
   onCleanup(() => subscription.unsubscribe());
 
-  // ボタン
+  // 各種ボタン
+  // Dynamicで使用
   const buttons: (todo: todoType) => {
     [x in todoStatusType]: () => JSX.Element;
   } = (todo) => {
@@ -67,7 +68,9 @@ function createTodo() {
       trash: () => <></>,
     };
   };
-
+  
+  // 編集と表示コンポーネント
+  // Dynamicで使用
   const editComponents: (
     todo: todoType,
     setEdit: Setter<editType>
