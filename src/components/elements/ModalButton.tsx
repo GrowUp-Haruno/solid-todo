@@ -1,8 +1,9 @@
 import { Button } from '@/components/atoms/Button';
 import { PrimaryModal } from '@/components/atoms/PrimaryModal';
+import { createModalButton } from '@/stores/createModalButton';
 import { Component, createSignal, JSX, JSXElement, mergeProps } from 'solid-js';
 
-type propsType = {
+export type ModalButtonPropsType = {
   children: JSXElement;
   modalEvent: () => void;
   modalMessage?: string;
@@ -10,29 +11,8 @@ type propsType = {
   noButtonName?: string;
 };
 
-export const ModalButton: Component<propsType> = (props) => {
-  const marge = mergeProps(
-    { modalMessage: '本当に実行しますか？', yesButtonName: 'はい', noButtonName: 'いいえ' },
-    props
-  );
-  const [isOpen, setIsOpen] = createSignal(false);
-
-  // 実行イベント
-  const onEvent: JSX.EventHandlerUnion<HTMLSpanElement, MouseEvent> = (ev) => {
-    ev.stopPropagation();
-    props.modalEvent();
-    setIsOpen(false);
-  };
-
-  // モーダル開閉イベント
-  const modalOpen: JSX.EventHandlerUnion<HTMLSpanElement, MouseEvent> = (ev) => {
-    ev.stopPropagation();
-    setIsOpen(true);
-  };
-  const modalClose: JSX.EventHandlerUnion<HTMLSpanElement, MouseEvent> = (ev) => {
-    ev.stopPropagation();
-    setIsOpen(false);
-  };
+export const ModalButton: Component<ModalButtonPropsType> = (props) => {
+  const { marge, isOpen, onEvent, modalOpen, modalClose } = createModalButton(props);
 
   return (
     <>
@@ -40,9 +20,10 @@ export const ModalButton: Component<propsType> = (props) => {
 
       <PrimaryModal isOpen={isOpen()} onClose={modalClose}>
         <p>{marge.modalMessage}</p>
-
         <Button onClick={onEvent}>{marge.yesButtonName}</Button>
-        <Button seondary onClick={modalClose}>{marge.noButtonName}</Button>
+        <Button seondary onClick={modalClose}>
+          {marge.noButtonName}
+        </Button>
       </PrimaryModal>
     </>
   );

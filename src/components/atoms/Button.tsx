@@ -8,17 +8,8 @@ export const Button: Component<{
 }> = (props) => {
   const marge = mergeProps({ onClick: () => {}, children: <></> }, props);
   return (
-    <Switch>
-      <Match when={!props.seondary}>
-        <span class="button primary" onClick={marge.onClick}>
-          {marge.children}
-        </span>
-      </Match>
-      <Match when={props.seondary}>
-        <span class="button secondary" onClick={marge.onClick}>
-          {marge.children}
-        </span>
-      </Match>
-    </Switch>
+    <span class="button" classList={{ primary: !props.seondary, secondary: props.seondary }} onClick={marge.onClick}>
+      {marge.children}
+    </span>
   );
 };
