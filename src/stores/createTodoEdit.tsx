@@ -1,8 +1,9 @@
-import { createSignal, createRoot, JSX, Setter } from 'solid-js';
+import { createSignal, createRoot, JSX, Setter, createEffect } from 'solid-js';
 import { editType, todoType } from '../models/modelTodo';
 import { localDB } from '@/db/localDB';
+import { TodoEditPropsType } from '@/components/modules/TodoEdit';
 
-function createTodoEdit() {
+export function createTodoEdit(props: TodoEditPropsType) {
   const [editInputValue, setEditInputValue] = createSignal('');
 
   // Todo編集入力
@@ -26,13 +27,18 @@ function createTodoEdit() {
     setEditInputValue('');
   };
 
+  // 編集モードに切り替わったらフォーカスを当てる
+  const inputRef = (el: HTMLInputElement) => {
+    createEffect(() => {
+      el.focus();
+      setEditInputValue(props.todo.action);
+    });
+  };
   return {
     editInputValue,
-    setEditInputValue,
     handleEditInput,
     handleEditKeyUp,
     handleBlur,
+    inputRef,
   };
 }
-
-export default createRoot(createTodoEdit);

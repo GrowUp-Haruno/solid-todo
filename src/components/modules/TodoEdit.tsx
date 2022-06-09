@@ -1,18 +1,14 @@
 import { Button } from '@/components/atoms/Button';
 import { PrimaryInput } from '@/components/atoms/PrimaryInput';
 import { editType, todoType } from '@/models/modelTodo';
-import createTodoEdit from '@/stores/createTodoEdit';
-import { Component, createEffect, Setter } from 'solid-js';
+import { createTodoEdit } from '@/stores/createTodoEdit';
+import { Component, Setter } from 'solid-js';
 
-export const TodoEdit: Component<{ setEdit: Setter<editType>; todo: todoType }> = (props) => {
-  const { editInputValue, setEditInputValue, handleEditInput, handleEditKeyUp, handleBlur } = createTodoEdit;
+export type TodoEditPropsType = { setEdit: Setter<editType>; todo: todoType };
 
-  let inputRef: HTMLInputElement | undefined;
-  createEffect(() => {
-    if (inputRef) inputRef.focus();
-    setEditInputValue(props.todo.action);
-  });
-  
+export const TodoEdit: Component<TodoEditPropsType> = (props) => {
+  const { editInputValue, handleEditInput, handleEditKeyUp, handleBlur, inputRef } = createTodoEdit(props);
+
   return (
     <>
       <PrimaryInput
