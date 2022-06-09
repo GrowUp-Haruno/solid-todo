@@ -1,6 +1,5 @@
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { Button } from '@/components/atoms/Button';
 import { PrimaryInput } from '@/components/atoms/PrimaryInput';
-import { localDB } from '@/db/localDB';
 import { editType, todoType } from '@/models/modelTodo';
 import createTodoEdit from '@/stores/createTodoEdit';
 import { Component, createEffect, Setter } from 'solid-js';
@@ -27,7 +26,7 @@ export const TodoEdit: Component<{ setEdit: Setter<editType>; todo: todoType }> 
         }}
         ref={inputRef}
       />
-      <PrimaryButton>修正</PrimaryButton>
+      <Button>修正</Button>
     </>
   );
 };

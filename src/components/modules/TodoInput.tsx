@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { Button } from '@/components/atoms/Button';
 
 import '@/assets/css/TodoInput.scss';
 import createTodo from '@/stores/createTodo';
@@ -10,7 +10,7 @@ export const TodoInput: Component = () => {
   return (
     <div class="todoInput">
       <PrimaryInput onInput={handleInput} value={inputValue()} onKeyUp={handleKeyUp} />
-      <PrimaryButton onClick={handleAddTodo}>追加</PrimaryButton>
+      <Button onClick={handleAddTodo}>追加</Button>
     </div>
   );
 };

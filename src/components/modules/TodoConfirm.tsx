@@ -1,6 +1,6 @@
 import { Component, Show } from 'solid-js';
 
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { Button } from '@/components/atoms/Button';
 import createTodo from '@/stores/createTodo';
 
 export const TodoConfirm: Component = () => {
@@ -8,7 +8,7 @@ export const TodoConfirm: Component = () => {
 
   return (
     <Show when={isConfirmShow()}>
-      <PrimaryButton onClick={handleConfirm}>確定</PrimaryButton>
+      <Button onClick={handleConfirm}>確定</Button>
     </Show>
   );
 };

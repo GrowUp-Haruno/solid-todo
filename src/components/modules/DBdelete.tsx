@@ -1,4 +1,3 @@
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
 import { ModalButton } from '@/components/elements/ModalButton';
 import { localDB } from '@/db/localDB';
 import { Component } from 'solid-js';

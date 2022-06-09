@@ -1,4 +1,4 @@
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { Button } from '@/components/atoms/Button';
 import { PrimaryModal } from '@/components/atoms/PrimaryModal';
 import { Component, createSignal, JSX, JSXElement, mergeProps } from 'solid-js';
 
@@ -36,13 +36,13 @@ export const ModalButton: Component<propsType> = (props) => {
 
   return (
     <>
-      <PrimaryButton onClick={modalOpen}>{marge.children}</PrimaryButton>
+      <Button onClick={modalOpen}>{marge.children}</Button>
 
       <PrimaryModal isOpen={isOpen()} onClose={modalClose}>
         <p>{marge.modalMessage}</p>
 
-        <PrimaryButton onClick={onEvent}>{marge.yesButtonName}</PrimaryButton>
-        <PrimaryButton onClick={modalClose}>{marge.noButtonName}</PrimaryButton>
+        <Button onClick={onEvent}>{marge.yesButtonName}</Button>
+        <Button seondary onClick={modalClose}>{marge.noButtonName}</Button>
       </PrimaryModal>
     </>
   );

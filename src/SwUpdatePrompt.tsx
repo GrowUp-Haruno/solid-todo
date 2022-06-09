@@ -1,8 +1,8 @@
-import { Component, createEffect, createSignal, Show } from 'solid-js';
+import { Component,  createSignal } from 'solid-js';
 
 import { useRegisterSW } from 'virtual:pwa-register/solid';
 import { PrimaryModal } from '@/components/atoms/PrimaryModal';
-import { PrimaryButton } from '@/components/atoms/PrimaryButton';
+import { Button } from '@/components/atoms/Button';
 
 export const SwUpdatePrompt: Component = () => {
   const {
@@ -14,7 +14,7 @@ export const SwUpdatePrompt: Component = () => {
   return (
     <PrimaryModal isOpen={needRefresh()} onClose={() => {}}>
       <p>🎉 新しいバージョンがリリースされました🎉</p>
-      <PrimaryButton
+      <Button
         onClick={() => {
           if (buttonMessage() === 'アップデート中…') return;
           setButtonMessage('アップデート中…');
@@ -22,7 +22,7 @@ export const SwUpdatePrompt: Component = () => {
         }}
       >
         {buttonMessage}
-      </PrimaryButton>
+      </Button>
     </PrimaryModal>
   );
 };
